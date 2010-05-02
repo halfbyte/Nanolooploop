@@ -46,7 +46,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   
   config.after_initialize do # so rake gems:install works
-    RPXNow.api_key = "a8d890dd557e936a91bb4769894298e6317e45e6"
+    rpx_config = YAML.load_file(File.join(Rails.root, 'config', 'rpx.yml'))
+    RPXNow.api_key = rpx_config["api_key"]
   end
   
   
