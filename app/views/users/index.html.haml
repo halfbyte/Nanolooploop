@@ -1,0 +1,5 @@
+%h2 All Artists
+
+%ul
+  - @users.each do |user|
+    %li= link_to user.email, user_loops_path(user)

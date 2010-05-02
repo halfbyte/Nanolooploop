@@ -1,0 +1,7 @@
+%li.loop
+  = image_tag gravatar_url_for(loopie.user.try(:email), :size => 64)
+  %h4= link_to h(loopie.name), loopie
+  - if loopie.user != current_user
+    by
+    &= loopie.user.try(:email)
+  (#{loopie.created_at.to_s :short})

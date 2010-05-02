@@ -1,0 +1,15 @@
+- content_for :title do
+  = controller.action_name.humanize
+
+%ul.edgetoedge
+  - @loops.each do |loop|
+    %li
+      - if signed_in? && loop.user == current_user
+        = link_to h(loop.name), loop_path(loop)
+      - else
+        = link_to h(loop.name), user_loop_path(loop.user, loop)
+        %em
+          by
+          &= loop.user.nickname
+          (#{loop.created_at.to_s :short})
+

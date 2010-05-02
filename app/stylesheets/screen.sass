@@ -1,0 +1,114 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import blueprint/reset.sass
+// To configure blueprint, edit the partials/base.sass file.
+@import partials/base.sass
+@import partials/utils.sass
+// Import all the default blueprint modules so that we can access their mixins.
+@import blueprint
+// Import the non-default scaffolding module.
+@import blueprint/modules/scaffolding.sass
+
+@import /stylesheets/formtastic.css
+
+// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
+// +blueprint
+
+//Recommended Blueprint configuration with scoping and semantic layout:
++blueprint-typography("body.bp")
++blueprint-scaffolding("body.bp")
+
+body.bp
+  +blueprint-utilities
+  +blueprint-debug
+  +blueprint-interaction
+  // Remove the scaffolding when you're ready to start doing visual design.
+  //Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+form.bp
+  +blueprint-form
+
+// Page layout can be done using mixins applied to your semantic classes and IDs:
+body.three-col
+  #container
+    +container
+  #footer
+    +column(!blueprint_grid_columns)
+  #sidebar
+    // One third of the grid columns, rounding down. With 24 cols, this is 8.
+    !sidebar_columns = 8
+    +column(!sidebar_columns, true)
+    +prepend(1)
+  #content
+    // Two thirds of the grid columns, rounding up.
+    // With 24 cols, this is 16.
+    !content_columns = 15
+    // true means it's the last column in the row
+    +column(!content_columns)
+
+    h2, h3
+      :border
+        :bottom 1px solid black
+        :right 1px solid black
+      +single-corner-border-radius(bottom, right, 10px)
+
+#header
+  background: transparent url(/images/nanolooploopbg.jpg) top left repeat-x
+  margin: 20px 0 20px 0
+  +box-shadow(0,4px,4px,#ccc)
+  +single-corner-border-radius(top, right, 20px)
+
+  h1
+    color: #fff
+    padding: 10px 10px 0px 10px
+    margin: 0
+    font-size: 2em
+  p
+    color: #ccf
+    padding: 10px
+    margin: 0
+
+#header .menu
+  list-style-type: none
+  margin: 0
+  padding: 0
+  overflow: hidden
+  background: rgba(128, 128, 128, 0.5)
+  li
+    float: left
+    a
+      display: block
+      padding: 5px
+      color: #fff
+      text-decoration: none
+      font-weight: bold
+
+#footer
+  margin-top: 20px
+  padding-top: 10px
+  border-top: 1px solid black
+  text-align: center
+
+
+
+.bp ul.loops
+  margin: 0
+  padding: 0
+  list-style-type: none
+  .loop
+    margin: 0
+    padding: 0
+    margin-bottom: 1em
+    overflow: hidden
+    img
+      float: left
+      margin-right: 10px
+    h4
+      padding: 0
+      margin: 0
+
+
+.latest-loops
+  +column(7)
+  +append(1)
+.bestest-loops
+  +column(7,true)

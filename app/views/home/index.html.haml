@@ -1,0 +1,44 @@
+%h2 A place to share your nanoloop tracks
+%p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+.latest-loops
+  %h2 Latest shared loops
+  %ul.loops
+    = render :partial => 'loops/loop', :collection => @latest_public, :as => :loopie
+
+.bestest-loops
+  %h2 Top loops
+  %ul.loops
+    = render :partial => 'loops/loop', :collection => @bestest_public, :as => :loopie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- content_for :sidebar do
+  - if logged_in?
+    %h2 Loopimport
+    %p
+      To import your loops, send them to the following email adresses.
+    %ul
+      %li
+        %b Private:
+        = mail_to maildrop(current_user, true)
+      %li
+        %b Public:
+        = mail_to maildrop(current_user, false)
+    %h2 Your own latest loops
+    %ul.loops
+      = render :partial => 'loops/loop', :collection => current_user.loops.all(:order => 'created_at', :limit => 10), :as => :loopie
+      %li= link_to "All your loops", loops_path

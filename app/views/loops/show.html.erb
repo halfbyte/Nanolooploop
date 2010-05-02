@@ -1,0 +1,14 @@
+<h2>
+  <%=h @loop.name %>
+  by <%= h @loop.user.email %>
+</h2>
+<p>
+  <b>Data:</b>
+  <%=link_to "data", @loop.data.to_s %>
+</p>
+<p>
+  <b>Download:</b>
+  <%=link_to "file", @loop.nan.url %>
+</p>
+
+<%= link_to 'Edit', edit_loop_path(@loop) if @loop.user == current_user %>

@@ -1,0 +1,37 @@
+<!doctype html>
+%html
+  %head
+    %meta{ :charset => "UTF-8" }
+    %title
+      nanolooploop
+    = stylesheet_link_tag 'jqtouch/jqtouch.min'
+    = stylesheet_link_tag 'themes/apple/theme.min'
+    = javascript_include_tag 'jqtouch/jquery.1.3.2.min'
+    = javascript_include_tag 'jqtouch/jqtouch.min'
+    :javascript
+      var jQT = new $.jQTouch({
+        icon: 'jqtouch.png',
+        addGlossToIcon: false,
+        startupScreen: 'jqt_startup.png',
+        statusBar: 'black',
+        preloadImages: [
+          '/stylesheets/themes/jqt/img/back_button.png',
+          '/stylesheets/themes/jqt/img/back_button_clicked.png',
+          '/stylesheets/themes/jqt/img/button_clicked.png',
+          '/stylesheets/themes/jqt/img/grayButton.png',
+          '/stylesheets/themes/jqt/img/whiteButton.png',
+          '/stylesheets/themes/jqt/img/loading.gif'
+        ]
+      });
+
+  %body
+    .current
+      .toolbar
+        %h1= yield :title
+        = link_to "Back", nil, :class => "back" unless current_page? root_path
+        = yield :toolbar
+      - unless flash.empty?
+        .info
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_\#{name}"
+      = yield

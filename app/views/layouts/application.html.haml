@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    = stylesheet_link_tag 'formtastic', :media => 'screen, projection'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+    %title #{@page_title} - nanolooploop
+  %body.bp.three-col
+    #container
+      #header
+        %h1 nanolooploop
+        %p a place for all those nanoloops
+        %ul.menu
+          %li= link_to "Home", root_path
+          %li= link_to "Artists", users_path
+          -if logged_in?
+            %li= link_to "Your loops", loops_path
+            %li= link_to "Edit profile", edit_user_path(current_user)
+            %li= link_to "Log out", session_path, :method => :delete
+          - else
+            %li= link_to "Login", new_session_path
+
+      #content
+        #flash
+          - flash.each do |key, value|
+            %div{:id => "flash_#{key}"}
+              &= value
+
+        = yield
+      #sidebar
+        = yield :sidebar
+      #footer
+        &copy; jan krutisch.
+        |
+        = link_to "Imprint / Impressum", imprint_path
+

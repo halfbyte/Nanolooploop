@@ -1,0 +1,8 @@
+%h2
+  - if @user != current_user
+    Loops of
+    <%= h(@user.email) %>
+  - else
+    Your loops
+%ul.loops
+  = render :partial => 'loops/loop', :collection => @loops, :as => :loopie

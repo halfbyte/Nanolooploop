@@ -1,0 +1,16 @@
+=border-radius(!radius=5px)
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+  border-radius = !radius
+
+
+=single-corner-border-radius(!vertical, !horizontal, !radius)
+  -moz-border-radius-#{!vertical}#{!horizontal} = !radius
+  -moz-border-radius-#{!vertical}#{!horizontal} = !radius
+  -webkit-border-#{!vertical}-#{!horizontal}-radius = !radius
+  -webkit-border-#{!vertical}-#{!horizontal}-radius = !radius
+  border-#{!vertical}-#{!horizontal}-radius = !radius
+
+=box-shadow(!x,!y,!blur,!color)
+  :-moz-box-shadow = !x !y !blur !color
+  :-webkit-box-shadow = !x !y !blur !color

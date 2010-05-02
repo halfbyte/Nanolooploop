@@ -1,0 +1,9 @@
+- content_for :title do
+  Sign up
+
+-form_for @user do |f|
+  %ul.edit.rounded
+    %li= f.text_field :email, :placeholder => 'Email'
+    %li= f.password_field :password, :placeholder => 'Password'
+    %li= f.password_field :password_confirmation, :placeholder => 'Password confirmation'
+  = link_to "Sign up",nil, :class => 'whiteButton submit'

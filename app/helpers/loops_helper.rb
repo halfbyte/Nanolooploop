@@ -1,0 +1,2 @@
+module LoopsHelper
+end
