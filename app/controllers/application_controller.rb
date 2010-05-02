@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  before_filter :set_iphone_view
   helper :all # include all helpers, all the time
   helper_method :logged_in?, :current_user, :maildrop
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -37,6 +38,16 @@ protected
 
   def maildrop(user, priv)
     "loopstore+#{user.id}#{priv ? "P" : "p"}#{priv ? user.mail_drop_private : user.mail_drop_public}@googlemail.com"
+
+  end
+  def set_iphone_view
+    if iphone_request?
+      request.format = :iphone
+    end
+  end
+
+  def iphone_request?
+    (agent = request.env["HTTP_USER_AGENT"]) && agent[/(Mobile\/.+Safari)/]
   end
 
 end

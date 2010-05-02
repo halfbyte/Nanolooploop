@@ -2,12 +2,9 @@
   nanolooploop
 
 %ul.rounded
-  -if signed_in?
+  -if logged_in?
     %li.arrow= link_to "your loops", loops_path
-    %li.arrow= link_to "log out", sign_out_path
-    %li
-      Your Emails as a
-      = link_to "VCard", user_path(current_user, :format => :vcf), :rel => 'external'
+    %li.arrow= link_to "log out", session_path, :method => :delete
   - else
     %li.arrow= link_to "log in", sign_in_path
     %li.arrow= link_to "sign up", sign_up_path
