@@ -1,6 +1,6 @@
 class User
   include MongoMapper::Document
-  
+
   key :name
   key :username
   key :email
@@ -13,7 +13,7 @@ class User
   has_many :loops
 
   after_create :ensure_maildrops
-
+  timestamps!
 
   def ensure_maildrops
     if (mail_drop_public.blank? || mail_drop_private.blank?)
@@ -42,7 +42,7 @@ class User
       end
     }.join
   end
-  
-  
-  
+
+
+
 end

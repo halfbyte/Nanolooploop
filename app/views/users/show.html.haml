@@ -1,3 +1,7 @@
-%h2
-  User:
-  = h(@user.email)
+%h2= display_name_for(@user)
+%h3 Public loops
+%ul.loops
+  = render :partial => 'loops/loop', :collection => @user.loops.find_all_by_public(true), :as => :loopie
+
+- content_for :sidebar do
+  = simple_format(h @user.description)

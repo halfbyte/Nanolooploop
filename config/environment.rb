@@ -23,7 +23,9 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'compass'
   config.gem 'hpricot'
+  config.gem 'bson_ext', :lib => 'bson'
   config.gem 'mongo_mapper'
+  config.gem 'joint'
   config.gem 'rpx_now'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -32,7 +34,7 @@ Rails::Initializer.run do |config|
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
-  # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+  config.frameworks -= [ :active_record ]
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
@@ -44,11 +46,11 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-  
+
   config.after_initialize do # so rake gems:install works
     rpx_config = YAML.load_file(File.join(Rails.root, 'config', 'rpx.yml'))
     RPXNow.api_key = rpx_config["api_key"]
   end
-  
-  
+
+
 end

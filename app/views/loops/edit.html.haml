@@ -1,10 +1,10 @@
 %h2 Editing loop
-- semantic_form_for(@loop) do |form|
-  = form.error_messages
-  - form.inputs do
-    = form.input :name
-    = form.input :public
-  - form.buttons do
-    = form.commit_button "Update"
+- semantic_form_for(@loop) do |f|
+  = f.error_messages
+  - f.inputs do
+    = f.input :name
+    = f.input :public, :as => :boolean
+  - f.buttons do
+    = f.commit_button "Update"
     or
     = link_to "Cancel", @loop

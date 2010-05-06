@@ -1,0 +1,21 @@
+[retriever]
+type = MultidropPOP3SSLRetriever
+server = pop.googlemail.com
+username = text@example.com
+password = mypassword
+envelope_recipient = delivered-to:1
+
+[destination]
+type = MultiDestination
+destinations = ("[maildir]", "[rails]")
+
+[maildir]
+type = Maildir
+path = /Users/jankrutisch/ruby/cashbits/data/maildir/
+
+[rails]
+type = MDA_external
+path = /Users/jankrutisch/ruby/cashbits/script/store_mail
+
+[options]
+delete = Off

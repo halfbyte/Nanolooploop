@@ -2,7 +2,11 @@
 
 - semantic_form_for @user do |form|
   = form.error_messages
-  = render :partial => "/users/inputs", :locals => { :form => form }
+  - form.inputs do
+    = form.input :nickname
+    = form.input :description, :as => :text
   - form.buttons do
-    = form.commit_button "Update"
+    = form.submit "Update"
+    or
+    = link_to "Cancel", user_path(@user)
 

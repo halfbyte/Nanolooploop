@@ -1,5 +1,11 @@
-%h2 A place to share your nanoloop tracks
-%p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+%h2 News (last updated: [06.05.2010])
+%p
+  Welcome to the rough alpha release of Nanolooploop. We'll see where it goes, but let me assure you:
+  I have some pretty cool ideas coming up for this place.
+%p
+  The first obvious addition will be mp3 previews of stored loops but this will require some action on Oliver's part,
+  the commandline version of the nanoloop renderer is not quite done yet.
+
 
 
 .latest-loops
@@ -11,20 +17,6 @@
   %h2 Top loops
   %ul.loops
     = render :partial => 'loops/loop', :collection => @bestest_public, :as => :loopie
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 - content_for :sidebar do
   - if logged_in?
@@ -42,3 +34,15 @@
     %ul.loops
       = render :partial => 'loops/loop', :collection => current_user.loops.all(:order => 'created_at', :limit => 10), :as => :loopie
       %li= link_to "All your loops", loops_path
+  - else
+    %h2 Hurry up and get in!
+    %p
+      If you are registered as a user on nanolooploop, you can send your loops from nanoloop on the iPhone to
+      archive them and to share them.
+    %p
+      Registration itself is a breeze, because you can simply log in with your Facebook, Google or OpenID account. No need to
+      type in all your data again for this place.
+    %p
+      Do you need more ideas why storing your loops in here is a good idea? How about playing nanoloop-pingpong with someone else?
+      Using Nanolooploop, exchanging nanoloop files is a breeze. you can use the iPhone optimized version of this page to load
+      someone else's loops into nanoloop on the iPhone.

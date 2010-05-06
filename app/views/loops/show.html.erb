@@ -3,12 +3,12 @@
   by <%= h @loop.user.email %>
 </h2>
 <p>
-  <b>Data:</b>
+  <b>nanoloop://</b>
   <%=link_to "data", @loop.data.to_s %>
 </p>
 <p>
   <b>Download:</b>
-  <%=link_to "file", @loop.nan.url %>
+  <%=link_to "file", loop_download_path(@loop, File.basename(@loop.name, ".nan"),  :format => 'nan') %>
 </p>
 
 <%= link_to 'Edit', edit_loop_path(@loop) if @loop.user == current_user %>

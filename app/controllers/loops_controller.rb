@@ -27,6 +27,7 @@ class LoopsController < ApplicationController
         format.html # show.html.erb
         format.iphone
         format.xml  { render :xml => @loop }
+        format.nan { render :text => @loop.nan.read, :type=> 'application/octet-stream'}
       end
     end
 
@@ -88,5 +89,5 @@ class LoopsController < ApplicationController
         login_required
       end
     end
-  
+
 end

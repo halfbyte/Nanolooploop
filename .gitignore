@@ -3,3 +3,6 @@ log/*.log
 tmp/**/*
 db/*.sqlite3
 public/stylesheets/compiled
+config/oldmail*
+config/getmailrc
+data/

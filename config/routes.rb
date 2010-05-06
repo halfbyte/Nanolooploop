@@ -1,14 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
-  map.resources :users
+
+  map.resources :users do |user|
+    user.resources :loops, :only => [:show, :index]
+  end
 
   map.resource :session
-  
+
   map.resources :loops, :only => [:show, :index, :destroy, :edit, :update], :collection => {:latest => :get, :top => :get}
 
-  map.resources :loops, :only => [:show, :index], :path_prefix => "users/:user_id", :name_prefix => 'user_'
-  
+  map.loop_download "/loops/:id/:filename.:format", :action => 'show', :controller => 'loops'
+
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
@@ -26,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments

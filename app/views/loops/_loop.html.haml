@@ -3,5 +3,5 @@
   %h4= link_to h(loopie.name), loopie
   - if loopie.user != current_user
     by
-    &= loopie.user.try(:email)
+    = link_to_user(loopie.user)
   (#{loopie.created_at.to_s :short})
