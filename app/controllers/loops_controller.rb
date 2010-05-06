@@ -1,6 +1,6 @@
 class LoopsController < ApplicationController
     before_filter :login_required, :only => [:destroy, :update, :edit]
-    before_filter :load_user_or_deny, :except => [:latest, :top]
+    before_filter :load_user_or_deny, :except => [:latest, :top, :open]
     skip_before_filter :set_iphone_view, :only => [:open]
 
     # GET /loops

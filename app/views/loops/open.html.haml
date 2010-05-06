@@ -1,1 +1,6 @@
-= link_to "Open in nanoloop", nanoloop_url(@loop)
+%h1
+  = link_to "Open in nanoloop", nanoloop_url(@loop)
+%h3 why is this needed?
+%p
+  Well, turns out that jqtouch (the lib I use for the iPhone views) doesn't really like to load pages with nanoloop urls in it.
+  That's why I decided that an extra click is probably better than doing nothing.

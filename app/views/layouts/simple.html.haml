@@ -1,6 +1,11 @@
 !!!
 %html
   %head
+    %meta(name="viewport" content="width = 320 initial-scale = 1, user-scalable = no")
     %title Workaround page.
+    %style(type='text/css')
+      :sass
+        body
+          font-family: sans-serif
   %body
     = yield
