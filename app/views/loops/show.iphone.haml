@@ -1,13 +1,13 @@
 - content_for :title do
   &= @loop.name
 
-- if @user != current_user
-  %ul.rounded
+%ul.rounded
+  - if @user != current_user
     %li
       = link_to "by " + link_to_user(@user)
-    %li
-      Uploaded at #{@loop.created_at.to_s :short}
-%ul.individual
-  %li= link_to "Open in nanoloop", @loop.data.to_s, :rel => 'external'
+  %li
+    Uploaded at #{@loop.created_at.to_s :short}
+  %li= link_to "Open in nanoloop", open_loop_path(@loop), :rel => 'external' #, :rel => 'external'
   - if @loop.user == current_user
     %li= link_to "Edit Details", edit_loop_path(@loop)
+

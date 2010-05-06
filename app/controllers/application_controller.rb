@@ -7,28 +7,28 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_iphone_view
   helper :all # include all helpers, all the time
-  helper_method :logged_in?, :current_user, :maildrop
+  helper_method :logged_in?, :current_user, :maildrop, :nanoloop_url
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
+
 protected
-  
+
   def current_user
     @current_user || (session[:user_id] ? User.find(session[:user_id]) : nil)
   end
-  
+
   def logged_in?
     !!current_user
   end
-  
+
   def current_user=(user)
     return if user.nil?
     @current_user = user
     session[:user_id] = user.id
   end
-  
+
   def login_required
     return true if logged_in?
     flash[:notice] = "You need to be logged in to use this page"
@@ -48,6 +48,10 @@ protected
 
   def iphone_request?
     (agent = request.env["HTTP_USER_AGENT"]) && agent[/(Mobile\/.+Safari)/]
+  end
+
+  def nanoloop_url(loop)
+    "#{loop.data}"
   end
 
 end

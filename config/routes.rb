@@ -3,12 +3,14 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :users do |user|
-    user.resources :loops, :only => [:show, :index]
+    user.resources :loops, :only => [:show, :index], :member => {:open => :get}
   end
 
   map.resource :session
 
-  map.resources :loops, :only => [:show, :index, :destroy, :edit, :update], :collection => {:latest => :get, :top => :get}
+  map.resources :loops, :only => [:show, :index, :destroy, :edit, :update],
+    :member => {:open => :get},
+    :collection => {:latest => :get, :top => :get}
 
   map.loop_download "/loops/:id/:filename.:format", :action => 'show', :controller => 'loops'
 

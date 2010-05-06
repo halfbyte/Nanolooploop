@@ -1,5 +1,5 @@
 class LoopsController < ApplicationController
-    before_filter :login_required, :only => :destroy
+    before_filter :login_required, :only => [:destroy, :update, :edit]
     before_filter :load_user_or_deny, :except => [:latest, :top]
 
     # GET /loops
@@ -29,6 +29,11 @@ class LoopsController < ApplicationController
         format.xml  { render :xml => @loop }
         format.nan { render :text => @loop.nan.read, :type=> 'application/octet-stream'}
       end
+    end
+
+    def open
+      @loop = Loop.find(params[:id])
+      redirect_to nanoloop_url(@loop)
     end
 
     # GET /loops/1/edit
