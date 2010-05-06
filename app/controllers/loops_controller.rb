@@ -1,6 +1,7 @@
 class LoopsController < ApplicationController
     before_filter :login_required, :only => [:destroy, :update, :edit]
     before_filter :load_user_or_deny, :except => [:latest, :top]
+    skip_before_filter :set_iphone_view, :only => [:open]
 
     # GET /loops
     # GET /loops.xml
@@ -33,7 +34,8 @@ class LoopsController < ApplicationController
 
     def open
       @loop = Loop.find(params[:id])
-      redirect_to nanoloop_url(@loop)
+      render :layout => 'simple'
+      # redirect_to nanoloop_url(@loop)
     end
 
     # GET /loops/1/edit
