@@ -23,6 +23,7 @@ after 'deploy:update_code', :set_symlinks
 desc "setting symlinks"
 task :set_symlinks do
   run "ln -s #{shared_path}/config/mongodb.yml #{release_path}/config/mongodb.yml"
+  run "ln -s #{shared_path}/config/rpx.yml #{release_path}/config/rpx.yml"
 end
 
 
