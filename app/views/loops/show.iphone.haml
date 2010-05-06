@@ -4,7 +4,7 @@
 - if @user != current_user
   %ul.rounded
     %li
-      = link_to "by " + h(@loop.user.try(:nickname)), user_loops_path(@user)
+      = link_to "by " + link_to_user(@user)
     %li
       Uploaded at #{@loop.created_at.to_s :short}
 %ul.individual
