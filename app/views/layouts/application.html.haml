@@ -49,3 +49,12 @@
       feedback_widget_options.color = "#222";
       feedback_widget_options.style = "idea";
       var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    :javascript
+      try {
+      var pageTracker = _gat._getTracker("UA-16277388-1");
+      pageTracker._trackPageview();
+      } catch(err) {}
