@@ -4,4 +4,4 @@
   = render :partial => 'loops/loop', :collection => @user.loops.find_all_by_public(true), :as => :loopie
 
 - content_for :sidebar do
-  = simple_format(h @user.description)
+  = simple_format(auto_link(h @user.description))
