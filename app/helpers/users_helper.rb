@@ -12,7 +12,8 @@ module UsersHelper
     link_to(image_tag(gravatar_url_for(user.email, options)), user_path(user))
   end
 
-  def gravatar_url_for(email, options = {})
+  def gravatar_url_for(email = "", options = {})
+    email = "" if email.nil?
     url_for({ :gravatar_id => Digest::MD5.hexdigest(email),
       :host => 'www.gravatar.com',
       :protocol => 'http://',
