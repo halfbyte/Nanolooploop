@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "home"
 
   map.imprint "/imprint", :controller => 'home', :action => 'imprint'
+  map.howto "/howto", :controller => 'home', :action => 'howto'
 
   # See how all your routes lay out with "rake routes"
 
