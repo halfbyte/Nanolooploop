@@ -6,4 +6,4 @@
       = gravatar_for_user(user, :size => 64)
       %h4
         = link_to_user(user)
-        = simple_format(h(user.description))
+        = simple_format(auto_link(h(user.description)))
