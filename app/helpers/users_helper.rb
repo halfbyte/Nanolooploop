@@ -1,7 +1,7 @@
 module UsersHelper
 
   def display_name_for(user)
-    h(user.nickname || user.name || user.email || "[has no name]")
+    h(user.nickname || user.username || user.name || "[has no name]")
   end
 
   def link_to_user(user)
