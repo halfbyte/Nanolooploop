@@ -1,6 +1,6 @@
 <h2>
   <%=h @loop.name %>
-  by <%= h @loop.user.email %>
+  by <%= link_to_user @loop.user %>
 </h2>
 <p>
   <b>nanoloop://</b>
