@@ -21,12 +21,14 @@ class MailReceiver < ActionMailer::Base
     parts = receiver.match(/^loopstore\+([a-f0-9]{24})([Pp])([a-zA-Z0-9]{8})\@googlemail\.com$/)
     if parts
       user = User.find_by_id(parts[1])
-      logger.debug(user)
-      is_private = parts[2] == 'P'
-      drop = parts[3]
-      if user && (user.send("mail_drop_#{is_private ? 'private' : 'public'}".to_sym) == drop)
-        loopie.user = user
-        loopie.public = !is_private
+      if user
+        drop = parts[3]
+        user_drops = [user.mail_drop_public, user.mail_drop_private]
+        if user_drops.include?(drop)
+          is_private = !(user_drops.index(drop) == 0)
+          loopie.user = user
+          loopie.public = !is_private
+        end
       end
     end
     loopie.save
