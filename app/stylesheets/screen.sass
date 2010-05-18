@@ -48,16 +48,20 @@ body.three-col
   h2, h3
     background: #e5eff8
     padding: 0 5px
-    +single-corner-border-radius(bottom, right, 10px)
+    +single-corner-border-radius("bottom", "right", 10px)
     +box-shadow(0,2px,2px,#ccc)
+    line-height: 1.5em
   h2
     font-size: 1.6em
+
+  h3
+    font-size: 1.2em
 
 #header
   background: transparent url(/images/nanolooploopbg.jpg) top left repeat-x
   margin: 20px 0 20px 0
   +box-shadow(0,4px,4px,#ccc)
-  +single-corner-border-radius(top, right, 20px)
+  +single-corner-border-radius("top", "right", 20px)
 
   h1
     color: #fff
