@@ -1,5 +1,9 @@
-- content_for :title do
-  &= @loop.name
+- content_for :toolbar do
+  %h1&= @loop.name
+  - if @user
+    = link_to "Back", user_path(@user), :class => 'back'
+  - else
+    = link_to "Back", root_path, :class => 'back'
 
 %ul.rounded
   - if @user != current_user
@@ -7,7 +11,7 @@
       = link_to "by " + link_to_user(@user)
   %li
     Uploaded at #{@loop.created_at.to_s :short}
-  %li= link_to "Open in nanoloop", open_loop_path(@loop), :rel => 'external' #, :rel => 'external'
+  %li= link_to "Open in nanoloop", nanoloop_url(@loop)
   - if @loop.user == current_user
     %li= link_to "Edit Details", edit_loop_path(@loop)
 

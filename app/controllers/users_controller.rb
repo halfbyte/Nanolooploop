@@ -1,11 +1,19 @@
 class UsersController < ApplicationController
-  
+
   before_filter :login_required, :only => [:edit, :update]
 
-  skip_before_filter :set_iphone_view, :only => :show
 
   def show
     @user = User.find(params[:id])
+    if (@user == current_user)
+      @loops = @user.loops.all
+    else
+      @loops = @user.loops.all(:conditions => {:private => false})
+    end
+    respond_to do |f|
+      f.iphone { render :template => 'loops/index' }
+      f.html
+    end
   end
 
   def edit

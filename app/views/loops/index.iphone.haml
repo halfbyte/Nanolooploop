@@ -1,14 +1,17 @@
-- content_for :title do
-  - if @user == current_user
-    Your loops
-  - else
-    &= @user.try(:nickname)
 - content_for :toolbar do
-  = link_to 'Back', root_path, :class => 'back'
+  - if @user == current_user
+    %h1 Your loops
+    = link_to "Back", root_path, :class => 'back'
+  - elsif @user
+    %h1 &= @user.try(:nickname)
+    = link_to 'Back', user_path(@user), :class => 'back'
+  - else
+    %h1&= @title
+    = link_to "Back", root_path, :class => 'back'
 %ul.rounded
   - @loops.each do |loop|
     %li
       - if @user == current_user
         = link_to h(loop.name), loop_path(loop)
       - else
-        = link_to h(loop.name), user_loop_path(@user, loop)
+        = link_to h(loop.name), user_loop_path(loop.user, loop)

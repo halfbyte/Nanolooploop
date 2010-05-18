@@ -4,10 +4,10 @@
 %ul.edgetoedge
   - @loops.each do |loop|
     %li
-      - if signed_in? && loop.user == current_user
+      - if logged_in? && loop.user == current_user
         = link_to h(loop.name), loop_path(loop)
       - else
-        = link_to h(loop.name), user_loop_path(loop.user, loop)
+        = link_to h(loop.name), loop_path(loop)
         %em
           by
           &= loop.user.nickname

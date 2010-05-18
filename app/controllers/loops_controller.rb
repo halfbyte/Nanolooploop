@@ -77,13 +77,15 @@ class LoopsController < ApplicationController
   # some exclusive iphone lists
 
     def latest
-      @loops = Loop.latest
-      render 'list'
+      @loops = Loop.all(:user_id => {"$exists" => true},:order => 'created_at DESC', :limit => 10)
+      @title = "Latest loops"
+      render 'index'
     end
 
     def top
-      @loops = Loop.latest
-      render 'list'
+      @loops = Loop.all(:user_id => {"$exists" => true},:conditions => {:public => true}, :order => 'plays_and_downloads DESC', :limit => 10)
+      @title = "Top loops"
+      render 'index'
     end
 
   private
