@@ -12,22 +12,25 @@
 require 'tempfile'
 
 class Loop
-  include MongoMapper::Document
-  plugin Joint
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::Grid
 
-  key :name
-  key :public, Boolean
-  key :message_id
-  key :plays_and_downloads, Integer
+  field :name
+  field :public, :type => Boolean
+  field :message_id
+  field :plays_and_downloads, :type => Integer
+
   attachment :nan
-  belongs_to :user
-  timestamps!
+  belongs_to_related :user
 
   def data=(data)
     unless data.blank?
       f = Tempfile.open("data")
       raw_data = Base64.decode64(data.gsub(/^nanoloop:\/\//,'').gsub(/\-/, '+').gsub(/_/,'/'))
       f.write(raw_data)
+      puts f.size
+      f.rewind
       self.nan = f
     end
   end

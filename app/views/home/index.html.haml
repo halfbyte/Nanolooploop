@@ -35,7 +35,7 @@
         = mail_to maildrop(current_user, false)
     %h2 Your own latest loops
     %ul.loops
-      = render :partial => 'loops/loop', :collection => current_user.loops.all(:order => 'created_at', :limit => 10), :as => :loopie
+      = render :partial => 'loops/loop', :collection => current_user.loops.order_by(['created_at', :desc]).limit(10), :as => :loopie
       %li= link_to "All your loops", loops_path
   - else
     %h2 Hurry up and get in!

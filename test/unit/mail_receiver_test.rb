@@ -4,9 +4,13 @@ class MailReceiverTest < ActionMailer::TestCase
 
   context "receiving a valid mail to private drop" do
     setup do
+      Loop.destroy_all
+      User.destroy_all
       @user = Factory(:user, :mail_drop_private => "u051i9j0", :mail_drop_public => "u194920d")
-      User.stubs(:find_by_id).returns(@user)
+      User.stubs(:where).with({:id => "12616276ae62718f912b9c0e"}).returns([@user])
+
     end
+    
     should "should create loop" do
       assert_difference "Loop.count" do
         MailReceiver.receive(mail_fixture("nanoloop"))
@@ -17,7 +21,8 @@ class MailReceiverTest < ActionMailer::TestCase
       assert_difference "Loop.count" do
         MailReceiver.receive(mail_fixture("nanoloop_with_lowercase_private_maildrop"))
       end
-      assert_equal @user, Loop.first(:message_id => "<9230773D-FA1B-40B2-AD3A-A3F58E6D2423@headflash.com>").user
+      loopie = Loop.where(:message_id => "<9230773D-FA1B-40B2-AD3A-A3F58E6D2423@headflash.com>").first
+      assert_equal @user, loopie.user
     end
 
     should "assign the loop to the right user" do

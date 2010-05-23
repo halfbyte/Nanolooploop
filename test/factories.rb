@@ -5,6 +5,6 @@ end
 
 Factory.define :user do |user|
   user.email                 { Factory.next :email }
-  user.identifier "achach"
+  user.sequence(:identifier) {|n| "id://achach#{n}"} 
   user.sequence(:nickname) {|n| "funktracker#{n}"}
 end

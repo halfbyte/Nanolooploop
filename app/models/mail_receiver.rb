@@ -20,7 +20,7 @@ class MailReceiver < ActionMailer::Base
     #loopstore+1Pu051i9j0@googlemail.com
     parts = receiver.match(/^loopstore\+([a-f0-9]{24})([Pp])([a-zA-Z0-9]{8})\@googlemail\.com$/)
     if parts
-      user = User.find_by_id(parts[1])
+      user = User.where(:id => parts[1]).first
       if user
         drop = parts[3]
         user_drops = [user.mail_drop_public, user.mail_drop_private]

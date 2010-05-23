@@ -1,19 +1,21 @@
 class User
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  key :name
-  key :username
-  key :email
-  key :identifier
-  key :mail_drop_public
-  key :mail_drop_private
-  key :nickname
-  key :description
+  field :name
+  field :username
+  field :email
+  field :identifier
+  field :mail_drop_public
+  field :mail_drop_private
+  field :nickname
+  field :description
 
-  has_many :loops
+  has_many_related :loops
 
   after_create :ensure_maildrops
-  timestamps!
+  
+  validates_uniqueness_of :email, :identifier, :allow_blank => true, :allow_nil => true
 
   def ensure_maildrops
     if (mail_drop_public.blank? || mail_drop_private.blank?)

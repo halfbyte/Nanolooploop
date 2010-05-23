@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def create
     raise "hackers?" unless data = RPXNow.user_data(params[:token])
     logger.debug(data.inspect)
-    self.current_user = User.first(:identifier => data[:identifier]) || User.create!(data)
+    self.current_user = User.first(:conditions => {:identifier => data[:identifier]}) || User.create!(data)
     redirect_to root_path
   end
   
