@@ -5,4 +5,4 @@
 %ul.rounded
   - @users.each do |user|
     %li.arrow
-      = link_to h(user.try(:nickname)), user_path(user)
+      = link_to display_name_for(user), user_path(user)
